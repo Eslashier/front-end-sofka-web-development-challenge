@@ -18,7 +18,7 @@ const ListOfToDo = () => {
             <br />
 
             <form>
-              <input type="text" name="task" />
+              <input type="text" name="task" placeholder="Schedule new task"/>
               <button>Schedule</button>
             </form>
 
@@ -28,7 +28,7 @@ const ListOfToDo = () => {
                 {tasks.id} {tasks.taskToDo}
                 <input type="checkbox" checked={tasks.done}></input>
                 <button>Delete</button>
-                <button>Edit</button>
+                <button disabled={tasks.done ? "true":""}>Edit</button>
                 <br />
               </div>
             })}

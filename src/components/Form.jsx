@@ -3,7 +3,7 @@ import React from 'react'
 export const Form = () => {
   return (
     <form>
-        <input></input>
+        <input type="text" placeholder="New group of task"></input>
         <button>Add Group of tasks</button>
     </form>
   )
