@@ -3,7 +3,6 @@ function reducer(state, action){
         case 'get-lists':
             return state
         case 'add-group':
-            console.log("adding group")
             const newGroup = {
                 id: Math.floor(Math.random()*100),
                 name: action.payload.group,
@@ -15,6 +14,7 @@ function reducer(state, action){
             }
             return newStateAddGroup;
         case 'add-task':
+            console.log("adding task")
             return state
         case 'remove-list':
             return state

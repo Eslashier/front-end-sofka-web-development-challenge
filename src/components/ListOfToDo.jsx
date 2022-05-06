@@ -1,19 +1,32 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useState, useEffect, useRef } from 'react'
 import { Store } from './StoreProvider'
 
 const ListOfToDo = () => {
 
+  const formRef = useRef(null)
+
   const { state, dispatch } = useContext(Store)
+
 
   const onAddTask = (event) => {
     event.preventDefault()
+    if (task) {
+      dispatch({
+        type: 'add-task',
+        payload: {
+          task,
+        }
+      })
+
+    }
+
   }
 
-  const[task, setTask] = useState('');
+  const [task, setTask] = useState('');
   console.log(task);
 
   const addingTask = (e) => {
-        setTask(e.target.value)
+    setTask(e.target.value)
   }
 
   return (
