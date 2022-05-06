@@ -56,8 +56,7 @@ const ListOfToDo = () => {
                 {/* <input type="checkbox"></input> */}
                 <input onChange={(event)=> onCheckBox(event, tasks)} type="checkbox" checked={tasks.done}/>
                 <button >Delete</button>
-                <button>Edit</button>
-                {/* <button disabled={tasks.done ? "true" : ""}>Edit</button> */}
+                <button disabled={tasks.done ? 1 : 0}>Edit</button>
                 <br />
               </div>
             })}
