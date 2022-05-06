@@ -1,13 +1,17 @@
-import { useState } from 'react'
 import './App.css'
+import ListOfToDo from './components/ListOfToDo'
+import Form from './components/Form'
+import StoreProvider from './components/StoreProvider'
+
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <div className="App">
-      fetchAllNotes
-    </div>
+    <StoreProvider>
+      <h1>Dashboard</h1>
+      <Form/>
+      <ListOfToDo/>
+    </StoreProvider>
   )
 }
 
