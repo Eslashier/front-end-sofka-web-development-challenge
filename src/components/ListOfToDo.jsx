@@ -24,6 +24,16 @@ const ListOfToDo = () => {
     setTask(e.target.value)
   }
 
+  const onCheckBox = (event, tasks) =>{
+    const checked = event.currentTarget.checked
+    dispatch({
+      type:'update-done',
+      payload:{...tasks,
+        done: checked}
+      
+    })
+  }
+
   return (
     <div>
       <ul>
@@ -43,8 +53,8 @@ const ListOfToDo = () => {
             {title.todo.map(tasks => {
               return <div style={tasks.done ? { textDecoration: 'line-through' } : {}} key={tasks.id}>
                 {tasks.id} {tasks.taskToDo}
-                <input type="checkbox"></input>
-                {/* <input type="checkbox" checked={tasks.done}></input> */}
+                {/* <input type="checkbox"></input> */}
+                <input onChange={(event)=> onCheckBox(event, tasks)} type="checkbox" checked={tasks.done}/>
                 <button >Delete</button>
                 <button>Edit</button>
                 {/* <button disabled={tasks.done ? "true" : ""}>Edit</button> */}

@@ -40,7 +40,28 @@ function reducer(state, action) {
                 ...state, listOfTitles: listToUpdate
             }
 
-            return (updatedMainList)
+            return updatedMainList
+
+        case 'update-done':
+            const indexDone = state.listOfTitles.findIndex(element => element.id === action.payload.fkTitleId)
+            const newUpdateMain = state.listOfTitles[indexDone].todo.filter(tasks =>tasks.id !== action.payload.id)
+            const newListOfTasksWithMod = [...newUpdateMain, action.payload]
+
+            const updatedGroupWithCheckedBoxes = {
+                ...state.listOfTitles[indexDone], todo: newListOfTasksWithMod
+            }
+
+            const listToUpdateWithCheckedBoxes = [...state.listOfTitles]
+
+            listToUpdateWithCheckedBoxes[indexDone] = updatedGroupWithCheckedBoxes
+
+            const updatedMainWithCheckedBox = {
+                ...state, listOfTitles: listToUpdateWithCheckedBoxes
+            }
+
+            console.log(updatedMainWithCheckedBox)
+
+            return updatedMainWithCheckedBox
 
         case 'remove-list':
             return state
