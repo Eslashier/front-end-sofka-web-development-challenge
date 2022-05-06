@@ -3,27 +3,22 @@ import { Store } from './StoreProvider'
 
 const ListOfToDo = () => {
 
-  const formRef = useRef(null)
-
   const { state, dispatch } = useContext(Store)
 
-
-  const onAddTask = (event) => {
+  const onAddTask = (fk, event) => {
     event.preventDefault()
     if (task) {
       dispatch({
         type: 'add-task',
         payload: {
           task,
+          fk,
         }
       })
-
     }
-
   }
 
   const [task, setTask] = useState('');
-  console.log(task);
 
   const addingTask = (e) => {
     setTask(e.target.value)
@@ -41,11 +36,11 @@ const ListOfToDo = () => {
 
             <form>
               <input onChange={addingTask} type="text" name={title.id} placeholder="Schedule new task" />
-              <button onClick={onAddTask}>Schedule</button>
+              <button onClick={e=>{onAddTask(title.id, e)}} name={title.id}>Schedule</button>
             </form>
 
             <h2>id  Task  Done</h2>
-            {title.task.map(tasks => {
+            {title.todo.map(tasks => {
               return <div style={tasks.done ? { textDecoration: 'line-through' } : {}} key={tasks.id}>
                 {tasks.id} {tasks.taskToDo}
                 <input type="checkbox"></input>
@@ -58,7 +53,6 @@ const ListOfToDo = () => {
             })}
             <br />
           </li>
-
         })}
       </ul>
     </div>
