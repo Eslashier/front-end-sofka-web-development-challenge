@@ -34,6 +34,13 @@ const ListOfToDo = () => {
     })
   }
 
+  const onDeleteTask = (tasks) => {
+    dispatch({
+      type:'remove-task',
+      payload: tasks
+    })
+  }
+
   return (
     <div>
       <ul>
@@ -55,7 +62,7 @@ const ListOfToDo = () => {
                 {tasks.id} {tasks.taskToDo}
                 {/* <input type="checkbox"></input> */}
                 <input onChange={(event)=> onCheckBox(event, tasks)} type="checkbox" checked={tasks.done}/>
-                <button >Delete</button>
+                <button onClick={()=>onDeleteTask(tasks)}>Delete</button>
                 <button disabled={tasks.done ? 1 : 0}>Edit</button>
                 <br />
               </div>

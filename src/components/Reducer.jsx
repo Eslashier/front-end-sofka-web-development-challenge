@@ -59,15 +59,27 @@ function reducer(state, action) {
                 ...state, listOfTitles: listToUpdateWithCheckedBoxes
             }
 
-            console.log(updatedMainWithCheckedBox)
-
             return updatedMainWithCheckedBox
 
         case 'remove-list':
             return state
 
         case 'remove-task':
-            return state
+            const indexTaskToDelete = state.listOfTitles.findIndex(element => element.id === action.payload.fkTitleId)
+            const tasksWithoutTheDeleted = state.listOfTitles[indexTaskToDelete].todo.filter(tasks =>tasks.id !== action.payload.id)
+            const updatedGroupWithDeletedTask = {
+                ...state.listOfTitles[indexTaskToDelete], todo: tasksWithoutTheDeleted
+            }
+
+            const listToUpdateWithoutDeletedTask = [...state.listOfTitles]
+
+            listToUpdateWithoutDeletedTask[indexTaskToDelete] = updatedGroupWithDeletedTask
+
+            const updatedMainWithoutDeletedTask = {
+                ...state, listOfTitles: listToUpdateWithoutDeletedTask
+            }
+
+            return updatedMainWithoutDeletedTask
 
         case 'update-task':
             return state
