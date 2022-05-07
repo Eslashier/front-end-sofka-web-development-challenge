@@ -14,12 +14,11 @@ export const Form = () => {
                     group,
                 }
             })
-
             formRefTask.current.reset();
         }
     }
 
-    const { state, dispatch } = useContext(Store)
+    const {state, dispatch } = useContext(Store)
 
     const [group, setGroup] = useState('');
 

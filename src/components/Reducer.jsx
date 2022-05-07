@@ -61,8 +61,13 @@ function reducer(state, action) {
 
             return updatedMainWithCheckedBox
 
-        case 'remove-list':
-            return state
+        case 'delete-list':
+            const filteredTitles = state.listOfTitles.filter(title => title.id !== action.payload.id)
+            const titlesUpdatedWithoutDeleted = {
+                ...state, listOfTitles: filteredTitles
+            }
+            console.log(filteredTitles)
+            return titlesUpdatedWithoutDeleted
 
         case 'remove-task':
             const indexTaskToDelete = state.listOfTitles.findIndex(element => element.id === action.payload.fkTitleId)

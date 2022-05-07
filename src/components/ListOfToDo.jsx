@@ -30,14 +30,20 @@ const ListOfToDo = () => {
       type:'update-done',
       payload:{...tasks,
         done: checked}
-      
     })
   }
 
   const onDeleteTask = (tasks) => {
+      dispatch({
+        type:'remove-task',
+        payload: tasks
+      })
+  }
+
+  const onDeleteTitle = (title) => {
     dispatch({
-      type:'remove-task',
-      payload: tasks
+      type:'delete-list',
+      payload: title
     })
   }
 
@@ -48,23 +54,21 @@ const ListOfToDo = () => {
           return <li key={title.id}>
 
             {title.name}
-            <button>Delete</button>
-            <br />
+            <button onClick={()=>onDeleteTitle(title)}>Delete</button>
+            <br/>
 
             <form>
               <input onChange={addingTask} type="text" name={title.id} placeholder="Schedule new task" />
               <button onClick={e=>{onAddTask(title.id, e)}} name={title.id}>Schedule</button>
             </form>
-
             <h2>id  Task  Done</h2>
             {title.todo.map(tasks => {
               return <div style={tasks.done ? { textDecoration: 'line-through' } : {}} key={tasks.id}>
                 {tasks.id} {tasks.taskToDo}
-                {/* <input type="checkbox"></input> */}
                 <input onChange={(event)=> onCheckBox(event, tasks)} type="checkbox" checked={tasks.done}/>
                 <button onClick={()=>onDeleteTask(tasks)}>Delete</button>
                 <button disabled={tasks.done ? 1 : 0}>Edit</button>
-                <br />
+                <br/>
               </div>
             })}
             <br />
