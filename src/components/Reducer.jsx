@@ -22,8 +22,6 @@ function reducer(state, action) {
         case 'add-task':
 
             const indexListToUpdate = state.listOfTitles.findIndex(element => element.id === action.payload.id)
-            console.log(indexListToUpdate)
-
 
             const listToUpdate = [...state.listOfTitles]
 
@@ -36,23 +34,36 @@ function reducer(state, action) {
             return updatedMainList
 
         case 'update-done':
-            const indexDone = state.listOfTitles.findIndex(element => element.id === action.payload.fkTitleId)
-            const newUpdateMain = state.listOfTitles[indexDone].todo.filter(tasks =>tasks.id !== action.payload.id)
-            const newListOfTasksWithMod = [...newUpdateMain, action.payload]
 
-            const updatedGroupWithCheckedBoxes = {
-                ...state.listOfTitles[indexDone], todo: newListOfTasksWithMod
+            const indexSwitchedList = state.listOfTitles.findIndex(element => element.id === action.payload.id)
+
+            const listToSwitch = [...state.listOfTitles]
+
+            listToSwitch[indexSwitchedList] = action.payload
+
+            const updatedSwitchedList = {
+                ...state, listOfTitles: listToSwitch
             }
 
-            const listToUpdateWithCheckedBoxes = [...state.listOfTitles]
+            return updatedSwitchedList
 
-            listToUpdateWithCheckedBoxes[indexDone] = updatedGroupWithCheckedBoxes
+            // const indexDone = state.listOfTitles.findIndex(element => element.id === action.payload.fkTitleId)
+            // const newUpdateMain = state.listOfTitles[indexDone].todo.filter(tasks =>tasks.id !== action.payload.id)
+            // const newListOfTasksWithMod = [...newUpdateMain, action.payload]
 
-            const updatedMainWithCheckedBox = {
-                ...state, listOfTitles: listToUpdateWithCheckedBoxes
-            }
+            // const updatedGroupWithCheckedBoxes = {
+            //     ...state.listOfTitles[indexDone], todo: newListOfTasksWithMod
+            // }
 
-            return updatedMainWithCheckedBox
+            // const listToUpdateWithCheckedBoxes = [...state.listOfTitles]
+
+            // listToUpdateWithCheckedBoxes[indexDone] = updatedGroupWithCheckedBoxes
+
+            // const updatedMainWithCheckedBox = {
+            //     ...state, listOfTitles: listToUpdateWithCheckedBoxes
+            // }
+
+            // return updatedMainWithCheckedBox
 
         case 'delete-list':
             const filteredTitles = state.listOfTitles.filter(title => title.id !== action.payload.id)

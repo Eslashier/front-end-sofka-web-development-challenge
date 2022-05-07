@@ -63,29 +63,65 @@ const ListOfToDo = () => {
     setTask(e.target.value)
   }
 
-  const onCheckBox = (event, tasks) => {
+  const onCheckBox = async (event, tasks) => {
     const checked = event.currentTarget.checked
+    const done = event.currentTarget.checked
+    const fkTitleId = tasks.fkTitleId
+    const taskToDo = tasks.taskToDo
+    const id = tasks.id
+
+    const taskSwitch = {
+      done,
+      fkTitleId,
+      taskToDo,
+      id
+    }
+
+    let taskSwitchedPromise = await fetch(`http://localhost:8888/api/update/task`,
+      {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(taskSwitch)
+
+      })
+
+    let taskSwitched = await taskSwitchedPromise.json();
+    
     dispatch({
       type: 'update-done',
-      payload: {
-        ...tasks,
-        done: checked
-      }
+      payload: taskSwitched
     })
   }
 
-  const onDeleteTask = (tasks) => {
-    dispatch({
-      type: 'remove-task',
-      payload: tasks
+  const onDeleteTask = async (tasks) => {
+    let response = await fetch(`http://localhost:8888/api/delete/task/${tasks.id}`,
+    {
+      method: 'DELETE'
     })
+
+    if(response.status ===200){
+      dispatch({
+        type: 'remove-task',
+        payload: tasks
+      })
+    }
   }
 
-  const onDeleteTitle = (title) => {
-    dispatch({
-      type: 'delete-list',
-      payload: title
+  const onDeleteTitle = async(title) => {
+    let response = await fetch(`http://localhost:8888/api/delete/title/${title.id}`,
+    {
+      method: 'DELETE'
     })
+
+    if(response.status ===200){
+      dispatch({
+        type: 'delete-list',
+        payload: title
+      })
+    }
+    
   }
 
 
