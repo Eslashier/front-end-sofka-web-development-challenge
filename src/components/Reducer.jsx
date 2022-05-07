@@ -47,24 +47,6 @@ function reducer(state, action) {
 
             return updatedSwitchedList
 
-            // const indexDone = state.listOfTitles.findIndex(element => element.id === action.payload.fkTitleId)
-            // const newUpdateMain = state.listOfTitles[indexDone].todo.filter(tasks =>tasks.id !== action.payload.id)
-            // const newListOfTasksWithMod = [...newUpdateMain, action.payload]
-
-            // const updatedGroupWithCheckedBoxes = {
-            //     ...state.listOfTitles[indexDone], todo: newListOfTasksWithMod
-            // }
-
-            // const listToUpdateWithCheckedBoxes = [...state.listOfTitles]
-
-            // listToUpdateWithCheckedBoxes[indexDone] = updatedGroupWithCheckedBoxes
-
-            // const updatedMainWithCheckedBox = {
-            //     ...state, listOfTitles: listToUpdateWithCheckedBoxes
-            // }
-
-            // return updatedMainWithCheckedBox
-
         case 'delete-list':
             const filteredTitles = state.listOfTitles.filter(title => title.id !== action.payload.id)
             const titlesUpdatedWithoutDeleted = {
@@ -90,7 +72,17 @@ function reducer(state, action) {
             return updatedMainWithoutDeletedTask
 
         case 'update-task':
-            return state
+            const indexEditList = state.listOfTitles.findIndex(element => element.id === action.payload.id)
+
+            const listToUpdateTask = [...state.listOfTitles]
+
+            listToUpdateTask[indexEditList] = action.payload
+
+            const editedList = {
+                ...state, listOfTitles: listToUpdateTask
+            }
+
+            return editedList
     }
 }
 
