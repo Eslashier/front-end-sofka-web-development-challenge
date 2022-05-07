@@ -9,10 +9,10 @@ const ListOfToDo = () => {
 
   useEffect(() =>{
     let mainList = fetchAllLists().then(
-      titlesFromBAck =>{
+      listOfTitlesFromBack =>{
         let action  = {
           type: 'get-lists',
-          payload: titlesFromBack
+          payload: listOfTitlesFromBack
         }
 
         dispatch(action)
@@ -21,7 +21,7 @@ const ListOfToDo = () => {
   },[])
 
   const fetchAllLists = async()=>{
-    let response = await fetch(`http://localhost:8888/api/get/titles-and-tasks`)
+    let response = await fetch(`http://localhost:8888/api/get/titles`)
     let data = await response.json();
     return data
   }
