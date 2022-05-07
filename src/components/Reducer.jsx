@@ -1,7 +1,10 @@
 function reducer(state, action) {
     switch (action.type) {
         case 'get-lists':
-            return state
+            const stateWithAllTheTitles = {
+                ...state, listOfTitles: action.payload
+            }
+            return stateWithAllTheTitles
 
         case 'add-group':
             const newGroup = {
@@ -66,7 +69,6 @@ function reducer(state, action) {
             const titlesUpdatedWithoutDeleted = {
                 ...state, listOfTitles: filteredTitles
             }
-            console.log(filteredTitles)
             return titlesUpdatedWithoutDeleted
 
         case 'remove-task':

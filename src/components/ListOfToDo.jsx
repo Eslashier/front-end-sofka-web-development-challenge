@@ -7,6 +7,26 @@ const ListOfToDo = () => {
 
   const { state, dispatch } = useContext(Store)
 
+  useEffect(() =>{
+    let mainList = fetchAllLists().then(
+      titlesFromBAck =>{
+        let action  = {
+          type: 'get-lists',
+          payload: titlesFromBack
+        }
+
+        dispatch(action)
+      }
+    )
+  },[])
+
+  const fetchAllLists = async()=>{
+    let response = await fetch(`http://localhost:8888/api/get/titles-and-tasks`)
+    let data = await response.json();
+    return data
+  }
+
+
   const onAddTask = (fk, event) => {
     event.preventDefault()
     if (task) {
