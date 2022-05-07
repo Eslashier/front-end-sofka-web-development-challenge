@@ -5,31 +5,45 @@ export const Form = () => {
 
     const formRefTask = useRef(null)
 
-    const onAddGroup = (event) => {
+      const onAddName = async (event) => {
         event.preventDefault();
-        if (group) {
+        if (name) {
+            const titleFromForm={
+                name
+            }
+
+            let titleSavedPromise = await fetch(`http://localhost:8888/api/create/titles`,
+            {
+                method: 'POST',
+                headers:{
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(titleFromForm)
+            })
+
+            let titleSaved = await titleSavedPromise.json();
+
             dispatch({
                 type: 'add-group',
-                payload: {
-                    group,
-                }
+                payload: titleSaved
             })
+
             formRefTask.current.reset();
         }
     }
 
-    const {state, dispatch } = useContext(Store)
+    const { state, dispatch } = useContext(Store)
 
-    const [group, setGroup] = useState('');
+    const [name, setName] = useState('');
 
-    const addingGroup = (e) => {
-        setGroup(e.target.value)
+    const addingName = (e) => {
+        setName(e.target.value)
     }
 
     return (
         <form ref={formRefTask}>
-            <input onChange={addingGroup} type="text" placeholder="New group of task" name="group"></input>
-            <button onClick={onAddGroup}>Add Group of tasks</button>
+            <input onChange={addingName} type="text" placeholder="New group of task" name="group"></input>
+            <button onClick={onAddName}>Add Group of tasks</button>
         </form>
     )
 }

@@ -7,10 +7,10 @@ const ListOfToDo = () => {
 
   const { state, dispatch } = useContext(Store)
 
-  useEffect(() =>{
+  useEffect(() => {
     let mainList = fetchAllLists().then(
-      listOfTitlesFromBack =>{
-        let action  = {
+      listOfTitlesFromBack => {
+        let action = {
           type: 'get-lists',
           payload: listOfTitlesFromBack
         }
@@ -18,24 +18,41 @@ const ListOfToDo = () => {
         dispatch(action)
       }
     )
-  },[])
+  }, [])
 
-  const fetchAllLists = async()=>{
+  const fetchAllLists = async () => {
     let response = await fetch(`http://localhost:8888/api/get/titles`)
     let data = await response.json();
     return data
   }
 
-
-  const onAddTask = (fk, event) => {
+  const onAddTask = async (fk, event) => {
     event.preventDefault()
     if (task) {
+
+      const fkTitleId = fk
+      const taskToDo = task
+
+      const taskFromFrom = {
+        taskToDo,
+        done: false,
+        fkTitleId
+      }
+
+      let taskSavedPromise = await fetch(`http://localhost:8888/api/create/tasks`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(taskFromFrom)
+        })
+
+      let taskSaved = await taskSavedPromise.json();
+
       dispatch({
         type: 'add-task',
-        payload: {
-          task,
-          fk,
-        }
+        payload: taskSaved
       })
     }
   }

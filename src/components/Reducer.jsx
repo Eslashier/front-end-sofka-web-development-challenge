@@ -8,9 +8,9 @@ function reducer(state, action) {
 
         case 'add-group':
             const newGroup = {
-                id: Math.floor(Math.random() * 100),
-                name: action.payload.group,
-                todo: []
+                    id: action.payload.id,
+                    name: action.payload.name,
+                    todo:[]
             }
             const newListOfGroupsAdded = [...state.listOfTitles, newGroup]
             const newStateAddGroup = {
@@ -20,24 +20,14 @@ function reducer(state, action) {
             return newStateAddGroup;
 
         case 'add-task':
-            const newTask = {
-                id: Math.floor(Math.random() * 100),
-                taskToDo: action.payload.task,
-                done: false,
-                fkTitleId: action.payload.fk
-            }
 
-            const index = state.listOfTitles.findIndex(element => element.id === action.payload.fk)
-            
-            const newListOfTasks = [...state.listOfTitles[index].todo, newTask]
+            const indexListToUpdate = state.listOfTitles.findIndex(element => element.id === action.payload.id)
+            console.log(indexListToUpdate)
 
-            const updatedGroup = {
-                ...state.listOfTitles[index], todo: newListOfTasks
-            }
 
             const listToUpdate = [...state.listOfTitles]
 
-            listToUpdate[index] = updatedGroup
+            listToUpdate[indexListToUpdate] = action.payload
 
             const updatedMainList = {
                 ...state, listOfTitles: listToUpdate
