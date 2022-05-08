@@ -10,63 +10,35 @@ CRUD for an agrouped to do lists, with a basic interface.
 
 To Santiago to help us with their greats explanations videos
 
-## API Reference
-
-#### Get all items
-
-```http
-  GET /api/titles
-```
-
-#### Post a Category or Title
-
-```http
-  POST /api/create/titles
-```
-
-#### Post a Task
-
-```http
-  POST /api/create/tasks
-```
-
-#### Update a Task
-
-```http
-  PUT /api/update/task
-```
-
-#### Delete a Title
-
-```http
-  DELETE /api/delete/title/${id}
-```
-
-#### Delete a Task
-
-```http
-  DELETE /api/delete/task/${id}
-```
-
-
-
-
 ## Demo
 
-Insert gif or link to demo
 
-![Alt Text](https://i.gyazo.com/1fd3d2716a725a3bbb1278ab1b9906fa.gif)
+![Alt Text](https://i.gyazo.com/6615c49435692df5cdfc8d16b2947c54.gif)
+![Alt Text](https://i.gyazo.com/43f6cfd11585c6a3d90d46662f1be724.gif)
+
 
 
 ## Installation
 
-Installing the back end
+Installing the front end
 
--Create a MySQL Schema named todo or the name you desired
+- Install the back end: https://github.com/Eslashier/back-end-sofka-web-development-challenge
 
--Modify the application.properties with your MySQL Port, Schema, username and Password
+- Install NodeJS
 
--Run the StackToDo java file.
+- Clone the repository: https://github.com/Eslashier/front-end-sofka-web-development-challenge
+
+- Open the path were you cloned the repository, open your console and call the next command: npm Install
+
+- Write the following command: npm run
+
+- Go to your localhost:3000 using your prefered browser
+
+- Create new lists of tasks and tasks!
+
+
+
+
     
 ## Authors
 
