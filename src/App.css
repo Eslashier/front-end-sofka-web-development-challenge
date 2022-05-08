@@ -43,4 +43,82 @@ button {
 
 h1{
   text-align: center;
+  color: #4CAF50;
+  font-size: 2.5em;
 }
+
+
+button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 12px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 2px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+button:disabled,
+button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
+.button1{
+  margin: 4px 10px;
+}
+
+input[type=text] {
+  border: 2px solid #4CAF50;
+  border-radius: 4px;
+  width: 25%;
+  padding: 12px 10px;
+  margin: 8px 0;
+  font-size: 1em;
+}
+
+.solid {
+  border-style: solid;
+  border-color: #4CAF50;
+  background-color:#c0f7c2;
+  border-radius: px;
+  width: 40%;
+  padding: 5px 10px;
+  
+}
+
+.div1{
+  border-style: solid;
+  border-color: #4CAF50;
+  background-color:#c0f7c2;
+  border-radius: 8px;
+  width: 100%;
+  padding: 5px 10px;
+}
+
+.div2{
+  border-style: solid;
+  border-color: #4CAF50;
+  background-color:#c0f7c2;
+  border-radius: 8px;
+  width: 100%;
+  padding: 5px 10px;
+}
+
+* {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+}
+
+.checkMark {
+  height: 18px;
+  width: 18px;
+  margin: 0 10px;
+}
+
+

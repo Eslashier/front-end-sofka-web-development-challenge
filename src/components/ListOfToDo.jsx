@@ -128,41 +128,40 @@ const ListOfToDo = () => {
 
 
   return (
-    <div>
+    <div className="div2">
       <ul>
         {state.listOfTitles.map(title => {
-          return <li key={title.id}>
+          return <div key={title.id}>
 
-            {title.name}
-            <button onClick={() => onDeleteTitle(title)}>Delete</button>
-            <br />
+            <h2>{title.name}
+            <button className="button1" onClick={() => onDeleteTitle(title)}>Delete</button>
+            </h2>
 
+            <div className="solid">
             <form>
-
               <div style={{ display: visible ? 'none' : 'block' }}>
                 <input onChange={addingTask} type="text" name={title.id} placeholder="Schedule new task" />
                 <button onClick={e => { onAddTask(title.id, e) }} name={title.id}>Schedule</button>
               </div>
 
               <div style={{ display: visible ? 'block' : 'none' }}>
-                <input onChange={addingTask}></input>
+                <input type="text" onChange={addingTask}></input>
                 <button onClick={() => setVisible(!visible)}>OK</button>
               </div>
-
             </form>
 
-            <h2>id  Task  Done</h2>
+            <h2>id  Task  Done </h2>
             {title.todo.map(tasks => {
               return <div style={tasks.done ? { textDecoration: 'line-through' } : {}} key={tasks.id}>
-                {tasks.id} {tasks.taskToDo}
-                <input onChange={(event) => onCheckBox(event, tasks)} type="checkbox" checked={tasks.done} />
+                <h3>{tasks.id} {tasks.taskToDo} 
+                <input className="checkMark" onChange={(event) => onCheckBox(event, tasks)} type="checkbox" checked={tasks.done} /> 
                 <button onClick={() => onDeleteTask(tasks)}>Delete</button>
                 <button onClick={() => { setVisible(!visible) }} disabled={tasks.done ? 1 : 0}>Edit</button>
-                <br />
+                </h3>
               </div>
             })}
-            <br />
-          </li>
+            </div>
+          </div>
         })}
       </ul>
     </div>

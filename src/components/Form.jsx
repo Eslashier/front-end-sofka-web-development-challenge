@@ -41,10 +41,12 @@ export const Form = () => {
     }
 
     return (
+        <div className="div1">
         <form ref={formRefTask}>
             <input onChange={addingName} type="text" placeholder="New group of task" name="group"></input>
-            <button onClick={onAddName}>Add Group of tasks</button>
+            <button className="button1" onClick={onAddName}>Add Group of tasks</button>
         </form>
+        </div>
     )
 }
 
